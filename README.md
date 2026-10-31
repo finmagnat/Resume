@@ -28,3 +28,17 @@ The obsolete `Portfolio/Portfolio - Yuriy Kobylyatskiy.docx` was retired in TASK
 Its historical content remains recoverable from Git; do not restore a public link to
 that file. No Cloudflare credentials, deployment hook or publication is configured by
 these scripts.
+
+## Portfolio CV integration (prepared, not activated)
+
+The master-only notification workflow is prepared in `develop` for review. It uses
+the `CLOUDFLARE_DEPLOY_HOOK` Actions secret; no real hook is called during tests.
+See the [owner setup and release checklist](docs/cv-integration-setup.md) for the
+separate activation gates, production-only token and preview branch policy.
+
+Offline integration checks (Node.js 24+):
+
+```powershell
+npm ci --ignore-scripts
+npm test
+```

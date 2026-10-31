@@ -1,0 +1,8 @@
+{
+  "name": "resume-integration-checks",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24.0.0" },
+  "scripts": { "test": "node --test tools/notify_portfolio_cv.test.mjs" },
+  "devDependencies": { "yaml": "2.9.1" }
+}

@@ -1,0 +1,41 @@
+name: Rebuild portfolio when approved CV PDFs change
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'Releases/EN/Yuriy_Kobylyatskiy_Senior_Unity_Developer_EN.pdf'
+      - 'Releases/RU/Yuriy_Kobylyatskiy_Senior_Unity_Developer_RU.pdf'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-production-cv-refresh
+  cancel-in-progress: false
+
+jobs:
+  trigger-portfolio-deployment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    env:
+      CLOUDFLARE_DEPLOY_HOOK: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}
+    steps:
+      - name: Trigger Cloudflare Pages production rebuild
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "${CLOUDFLARE_DEPLOY_HOOK:-}" ]; then
+            echo "::error::Required repository Actions secret CLOUDFLARE_DEPLOY_HOOK is missing"
+            exit 1
+          fi
+          if ! curl --fail --silent \
+            --max-time 30 \
+            --output /dev/null \
+            --request POST \
+            "$CLOUDFLARE_DEPLOY_HOOK"; then
+            echo "::error::Cloudflare Deploy Hook request failed"
+            exit 1
+          fi
+          echo "Production rebuild requested. Check Cloudflare Pages deployment status to confirm publication."

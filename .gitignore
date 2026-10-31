@@ -1,1 +1,3 @@
 ~$*.docx
+.artifacts/
+__pycache__/

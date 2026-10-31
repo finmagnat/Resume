@@ -19,7 +19,7 @@ The goal is to keep resumes, portfolio materials, supporting documents, notes, a
 
 - `RU/`: Russian resume and cover letter documents.
 - `EN/`: English resume and cover letter documents.
-- `Portfolio/`: portfolio documents and professional case materials.
+- Portfolio: the public website is https://yk-developer.pages.dev/; the retired portfolio DOCX is retained only in Git history.
 - `Interview/`: interview preparation notes, questions, answers, and related materials.
 - `Templates/`: reusable document templates for resumes, cover letters, and other career documents.
 - `Notes/`: working notes, drafts, decisions, and ideas that are not ready for final documents.

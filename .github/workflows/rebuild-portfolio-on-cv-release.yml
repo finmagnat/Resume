@@ -6,6 +6,7 @@ on:
     paths:
       - 'Releases/EN/Yuriy_Kobylyatskiy_Senior_Unity_Developer_EN.pdf'
       - 'Releases/RU/Yuriy_Kobylyatskiy_Senior_Unity_Developer_RU.pdf'
+      - 'Releases/UA/Yuriy_Kobylyatskiy_Senior_Unity_Developer_UA.pdf'
   workflow_dispatch:
 
 permissions:

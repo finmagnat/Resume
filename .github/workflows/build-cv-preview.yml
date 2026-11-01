@@ -1,0 +1,74 @@
+name: Build tri-language CV previews
+
+on:
+  push:
+    branches:
+      - feature/ukrainian-cv-draft-20261101
+    paths:
+      - 'tools/build_cv_releases.py'
+      - 'Drafts/UA/**'
+      - 'Drafts/RU/**'
+      - 'Drafts/EN/**'
+      - '.github/workflows/build-cv-preview.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tri-language-cv-preview
+  cancel-in-progress: false
+
+jobs:
+  generate-and-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install document tooling
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libreoffice-writer poppler-utils fonts-liberation fonts-dejavu-core
+          python -m pip install --disable-pip-version-check "python-docx==1.2.0" "pypdf==6.1.0"
+
+      - name: Build and validate DOCX and PDF
+        run: python tools/build_cv_releases.py
+
+      - name: Produce page images for owner layout review
+        run: |
+          mkdir -p .artifacts/cv-qa
+          for lang in RU EN UA; do
+            pdf="Releases/$lang/Yuriy_Kobylyatskiy_Senior_Unity_Developer_$lang.pdf"
+            pdftoppm -f 1 -l 9 -scale-to 1200 -png "$pdf" ".artifacts/cv-qa/$lang" >/dev/null 2>&1
+          done
+
+      - name: Upload rendered QA pages
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-visual-qa-pages
+          path: .artifacts/cv-qa/
+          retention-days: 14
+
+      - name: Commit generated previews to feature branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            Releases/RU/Yuriy_Kobylyatskiy_Senior_Unity_Developer_RU.docx \
+            Releases/RU/Yuriy_Kobylyatskiy_Senior_Unity_Developer_RU.pdf \
+            Releases/EN/Yuriy_Kobylyatskiy_Senior_Unity_Developer_EN.docx \
+            Releases/EN/Yuriy_Kobylyatskiy_Senior_Unity_Developer_EN.pdf \
+            Releases/UA/Yuriy_Kobylyatskiy_Senior_Unity_Developer_UA.docx \
+            Releases/UA/Yuriy_Kobylyatskiy_Senior_Unity_Developer_UA.pdf
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+          else
+            git commit -m "build: generate RU EN UA CV document previews"
+            git push origin HEAD:feature/ukrainian-cv-draft-20261101
+          fi

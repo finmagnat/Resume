@@ -54,19 +54,21 @@ GitHub: github.com/finmagnat | LinkedIn: yuriy-kobylyatskiy
 
 ## Ключевые компетенции
 
-- Unity Development: Unity 2D/3D, gameplay programming, UI programming, animation systems, Unity Addressables, UniTask, async/await, CancellationToken, ScriptableObject, DOTween, Spine, Steamworks, custom editor tools.
+- **Unity Development:** Unity 2D/3D, gameplay programming, UI programming, animation systems, Unity Addressables, UniTask, async/await, CancellationToken, ScriptableObject, DOTween, Spine, Steamworks, custom editor tools.
 
-- AI & Game Systems: Behavior Trees, Behavior Designer, custom BT nodes, kinematic physics, combat systems, save systems, inventory systems, settings systems, cutscenes.
+- **AI & Game Systems:** Behavior Trees, Behavior Designer, custom BT nodes, kinematic physics, combat systems, save systems, inventory systems, settings systems, cutscenes.
 
-- LiveOps & Monetization: Onboarding, daily bonus, rewards, referral systems, promo codes, featured content, A/B testing, remote configurations, content delivery.
+- **LiveOps & Monetization:** Onboarding, daily bonus, rewards, referral systems, promo codes, featured content, A/B testing, remote configurations, content delivery.
 
-- SDK Integrations: PlayFab, Firebase, RevenueCat, AppsFlyer, Amplitude, Google Analytics, Google AdMob, Google Play Services, iOS Game Center.
+- **SDK Integrations:** PlayFab, Firebase, RevenueCat, AppsFlyer, Amplitude, Google Analytics, Google AdMob, Google Play Services, iOS Game Center.
 
-- Optimization & Automation: Memory optimization, build size optimization, performance optimization, crash reduction, Unity Memory Profiler, CI/CD (Jenkins, TeamCity), Bash, Rclone, Cron.
+- **Optimization & Automation:** Memory optimization, build size optimization, performance optimization, crash reduction, Unity Memory Profiler, CI/CD (Jenkins, TeamCity), Bash, Rclone, Cron.
 
-- Graphics: Custom Unity shaders, material customization, gameplay VFX implementation, lightweight visual feedback effects.
+- **Graphics:** Custom Unity shaders, material customization, gameplay VFX implementation, lightweight visual feedback effects.
 
-- Architecture & Engineering Practices: Dependency Injection (Zenject), SOLID, KISS, DRY, YAGNI, modular architecture, refactoring, technical design. Leadership: estimation, mentoring, team leadership, hiring, technical documentation, project audits.
+- **Architecture & Engineering Practices:** Dependency Injection (Zenject), SOLID, KISS, DRY, YAGNI, модульная архитектура, рефакторинг, техническое проектирование.
+
+- **Leadership:** оценка задач, наставничество, управление командами, найм, техническая документация, аудит проектов.
 
 ## Профессиональный опыт
 
@@ -217,15 +219,15 @@ GitHub: github.com/finmagnat | LinkedIn: yuriy-kobylyatskiy
 
 - Языки программирования: C#, C++17, PHP, JavaScript, SQL, HTML, CSS
 
-- Game Engines & Platforms: Unity, Steam, iOS, Android, Windows, mobile game development, PC game development
+- **Game Engines & Platforms:** Unity, Steam, iOS, Android, Windows, mobile game development, PC game development
 
-- Backend & Data: PlayFab, PlayFab CloudScript, Firebase Realtime Database, Firebase Remote Config, PostgreSQL, MySQL, Redis
+- **Backend & Data:** PlayFab, PlayFab CloudScript, Firebase Realtime Database, Firebase Remote Config, PostgreSQL, MySQL, Redis
 
-- SDK / Analytics / Monetization: RevenueCat, AppsFlyer, Amplitude, Google Analytics, Google AdMob, Unity Ads, Adjust, Google Play Services, iOS Game Center
+- **SDK / Analytics / Monetization:** RevenueCat, AppsFlyer, Amplitude, Google Analytics, Google AdMob, Unity Ads, Adjust, Google Play Services, iOS Game Center
 
-- CI/CD & Automation: Jenkins, TeamCity, Bash, Cron, Rclone
+- **CI/CD & Automation:** Jenkins, TeamCity, Bash, Cron, Rclone
 
-- Tools & IDEs: Git, Bitbucket, GitHub, SVN, Mercurial, Rider, Visual Studio, PhpStorm, IntelliJ IDEA, Xcode basics, macOS basics, Android Studio / Logcat, Unity Memory Profiler, ChatGPT, Codex
+- **Tools & IDEs:** Git, Bitbucket, GitHub, SVN, Mercurial, Rider, Visual Studio, PhpStorm, IntelliJ IDEA, Xcode basics, macOS basics, Android Studio / Logcat, Unity Memory Profiler, ChatGPT, Codex
 
 ## Языки
 
@@ -240,7 +242,3 @@ GitHub: github.com/finmagnat | LinkedIn: yuriy-kobylyatskiy
 Компьютерная академия «Шаг» — разработка программного обеспечения, квалификация «Программист», 2007
 
 Дополнительно: сетевое администрирование, администрирование Windows, компьютерная графика.
-
----
-
-*Draft for editorial review. Based on the approved RU DOCX in `Releases/`. Changes: stable career start dates, WordBattle independent project, confirmed engineering practices and tooling. The approved DOCX/PDF and `master` remain unchanged. VContainer is not claimed as hands-on experience.*

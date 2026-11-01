@@ -34,8 +34,8 @@ DOC_NAMES = {
 
 # Don't silently overwrite already approved source files.
 SOURCE = {
-    "RU": ROOT / "Releases/RU" / (DOC_NAMES["RU"] + ".docx"),
-    "EN": ROOT / "Releases/EN" / (DOC_NAMES["EN"] + ".docx"),
+    "RU": ROOT / "Templates/ResumeBase/RU.docx",
+    "EN": ROOT / "Templates/ResumeBase/EN.docx",
 }
 DEST = {lang: ROOT / f"Releases/{lang}" / (name + ".docx") for lang, name in DOC_NAMES.items()}
 

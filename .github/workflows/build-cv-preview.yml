@@ -55,6 +55,19 @@ jobs:
           path: .artifacts/cv-qa/
           retention-days: 14
 
+      - name: Upload generated CV documents for visual review
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-release-preview-files
+          path: |
+            Releases/RU/Yuriy_Kobylyatskiy_Senior_Unity_Developer_RU.docx
+            Releases/RU/Yuriy_Kobylyatskiy_Senior_Unity_Developer_RU.pdf
+            Releases/EN/Yuriy_Kobylyatskiy_Senior_Unity_Developer_EN.docx
+            Releases/EN/Yuriy_Kobylyatskiy_Senior_Unity_Developer_EN.pdf
+            Releases/UA/Yuriy_Kobylyatskiy_Senior_Unity_Developer_UA.docx
+            Releases/UA/Yuriy_Kobylyatskiy_Senior_Unity_Developer_UA.pdf
+          retention-days: 14
+
       - name: Commit generated previews to feature branch
         run: |
           git config user.name "github-actions[bot]"

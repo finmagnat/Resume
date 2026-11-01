@@ -10,7 +10,7 @@ GitHub: https://github.com/finmagnat | LinkedIn: https://www.linkedin.com/in/yur
 
 ## Професійний профіль
 
-Senior / Lead Unity Developer із понад 15 роками досвіду в GameDev та понад 18 роками у розробці програмного забезпечення.
+Senior / Lead Unity Developer. У розробці програмного забезпечення з 2007 року, у GameDev — з 2011 року.
 
 Розробляю та підтримую мобільні й ПК-ігри для iOS, Android, Windows і Steam. Основна спеціалізація: ігрові механіки та системи (gameplay systems), LiveOps, інтеграція SDK, віддалена доставка контенту, оптимізація, інструменти Unity та підтримка продуктів у продакшені.
 
@@ -49,13 +49,14 @@ Senior / Lead Unity Developer із понад 15 роками досвіду в 
 
 ## Ключові компетенції
 
-- **Unity Development:** Unity 2D/3D, програмування геймплею та UI, системи анімації, ScriptableObject, DOTween, Spine, Steamworks, власні інструменти редактора.
+- **Unity Development:** Unity 2D/3D, програмування геймплею та UI, системи анімації, Unity Addressables, UniTask, async/await, CancellationToken, ScriptableObject, DOTween, Spine, Steamworks, власні інструменти редактора.
 - **AI & Game Systems:** Behavior Trees, Behavior Designer, власні вузли BT, кінематична фізика, бойові системи, системи збереження, інвентарю та налаштувань, кат-сцени.
 - **LiveOps & Monetization:** onboarding, щоденні бонуси, нагороди, реферальні системи, промокоди, рекомендований контент, A/B-тестування, віддалені конфігурації, доставка контенту.
 - **SDK Integrations:** PlayFab, Firebase, RevenueCat, AppsFlyer, Amplitude, Google Analytics, Google AdMob, Google Play Services, iOS Game Center.
-- **Optimization & Automation:** оптимізація використання пам'яті, розміру збірок і продуктивності, зменшення кількості аварійних завершень, Unity Memory Profiler, Bash, Rclone, Cron, CI/CD.
+- **Optimization & Automation:** оптимізація використання пам'яті, розміру збірок і продуктивності, зменшення кількості аварійних завершень, Unity Memory Profiler, CI/CD (Jenkins, TeamCity), Bash, Rclone, Cron.
 - **Graphics:** власні шейдери Unity, налаштування матеріалів, реалізація ігрових VFX, легкі ефекти візуального зворотного зв'язку.
-- **Leadership & Architecture:** технічне проєктування, архітектура, оцінювання завдань, наставництво, управління командами, наймання, технічна документація, аудит проєктів.
+- **Architecture & Engineering Practices:** модульна архітектура, Dependency Injection (Zenject), SOLID, KISS, DRY, YAGNI, рефакторинг, технічне проєктування.
+- **Leadership:** оцінювання завдань, наставництво, управління командами, наймання, технічна документація, аудит проєктів.
 
 ## Професійний досвід
 
@@ -164,6 +165,17 @@ Senior / Lead Unity Developer із понад 15 роками досвіду в 
 - У 2007–2008 роках виконав фриланс-проєкт із розробки порталу соціальної мережі та адміністративних модулів.
 
 **Технології:** PHP, SQL, HTML, CSS, JavaScript, MySQL, Flash/ActionScript.
+
+## Власні проєкти (Independent Projects)
+
+### WordBattle — власний інді-проєкт
+
+**Unity / Android | У розробці та тестуванні | [Опис проєкту в портфоліо](https://yk-developer.pages.dev/projects/wordbattle/)**
+
+- Розробляю словесну стратегічну гру з AI-суперником, відповідаю за архітектуру, алгоритми пошуку слів, ігрові механіки, UI, інтеграцію SDK та підготовку Android-релізу.
+- Реалізую ігрові сервіси, аналітику та монетизацію з використанням PlayFab, GameAnalytics, Google Play Billing і AdMob.
+
+**Технології:** Unity, C#, Unity Addressables, Zenject, UniTask, PlayFab, GameAnalytics, Google Play Billing, AdMob.
 
 ## Технології
 

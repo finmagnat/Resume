@@ -47,8 +47,8 @@ def base_style_from(p):
     return deepcopy(first._r.rPr) if first is not None and first._r.rPr is not None else None
 
 def write_text(p, value):
-    # Keep paragraph-level formatting (including numbering, spacing and page rules)
-    # and the first content run's character formatting.
+    # Preserve the original paragraph layout. Use this only for paragraphs whose
+    # entire text has the same emphasis; competency items need write_competency.
     rpr = base_style_from(p)
     for node in list(p._p):
         if node.tag != qn("w:pPr"):
@@ -57,6 +57,31 @@ def write_text(p, value):
     if rpr is not None:
         r._r.insert(0, rpr)
     return r
+
+
+def write_competency(p, value):
+    """Bold competency labels only, never the explanatory body text."""
+    rpr = base_style_from(p)
+    for node in list(p._p):
+        if node.tag != qn("w:pPr"):
+            p._p.remove(node)
+
+    def add(text, bold):
+        run = p.add_run(text)
+        if rpr is not None:
+            run._r.insert(0, deepcopy(rpr))
+        run.bold = bold
+
+    first, sep, remainder = value.partition(":")
+    if not sep:
+        raise RuntimeError(f"Competency item has no category label: {value[:50]}")
+    add(first + ":", True)
+    # The combined architecture + leadership line contains two distinct labels.
+    before, marker, after = remainder.partition(" Leadership:")
+    add(before, False)
+    if marker:
+        add(" Leadership:", True)
+        add(after, False)
 
 def clickable(p, text, url):
     rid = p.part.relate_to(url, RT.HYPERLINK, is_external=True)
@@ -124,8 +149,11 @@ def change_core(doc, lang):
         raise RuntimeError(f"{lang}: expected 116 paragraphs, got {len(ps)}")
     if lang == "UA":
         translated = ua_lines()
-        for p, value in zip(ps, translated, strict=True):
-            write_text(p, value)
+        for idx, (p, value) in enumerate(zip(ps, translated, strict=True)):
+            if 28 <= idx <= 34:
+                write_competency(p, value)
+            else:
+                write_text(p, value)
         # Make website and contact links actually clickable (not just visible text).
         write_text(ps[3], "Україна | Лише віддалена робота | +380957575677 (Telegram, Viber) | finmagnat@gmail.com | ")
         clickable(ps[3], "Портфоліо", PUBLIC_SITE)
@@ -137,13 +165,13 @@ def change_core(doc, lang):
         summary = ("В разработке ПО с 2007 года, в GameDev — с 2011 года." if lang == "RU" else
                    "Software development since 2007; GameDev since 2011.")
         write_text(ps[6], summary)
-        write_text(ps[28], "Unity Development: Unity 2D/3D, gameplay programming, UI programming, animation systems, Unity Addressables, UniTask, async/await, CancellationToken, ScriptableObject, DOTween, Spine, Steamworks, custom editor tools.")
-        write_text(ps[32], "Optimization & Automation: Memory optimization, build size optimization, performance optimization, crash reduction, Unity Memory Profiler, CI/CD (Jenkins, TeamCity), Bash, Rclone, Cron.")
+        write_competency(ps[28], "Unity Development: Unity 2D/3D, gameplay programming, UI programming, animation systems, Unity Addressables, UniTask, async/await, CancellationToken, ScriptableObject, DOTween, Spine, Steamworks, custom editor tools.")
+        write_competency(ps[32], "Optimization & Automation: Memory optimization, build size optimization, performance optimization, crash reduction, Unity Memory Profiler, CI/CD (Jenkins, TeamCity), Bash, Rclone, Cron.")
         practices = {
             "RU": "Architecture & Engineering Practices: Dependency Injection (Zenject), SOLID, KISS, DRY, YAGNI, модульная архитектура, рефакторинг, техническое проектирование. Leadership: оценка задач, наставничество, управление командами, найм, техническая документация, аудит проектов.",
             "EN": "Architecture & Engineering Practices: Dependency Injection (Zenject), SOLID, KISS, DRY, YAGNI, modular architecture, refactoring, technical design. Leadership: estimation, mentoring, team leadership, hiring, technical documentation, project audits.",
         }
-        write_text(ps[34], practices[lang])
+        write_competency(ps[34], practices[lang])
     return ps
 
 def add_wordbattle(doc, lang):
@@ -225,6 +253,16 @@ def validate(docx, pdf, lang):
     print(f"{lang}: DOCX={docx.stat().st_size} bytes, PDF={pdf.stat().st_size} bytes, pages={len(reader.pages)}, links OK")
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output-releases", action="store_true",
+                        help="Explicitly replace the approved Releases files; review before running")
+    args = parser.parse_args()
+    # Never overwrite the owner's manually polished releases by default.
+    outputs = DEST if args.output_releases else {
+        lang: ROOT / ".artifacts/cv-preview" / lang / (name + ".docx")
+        for lang, name in DOC_NAMES.items()
+    }
     ua_base = ua_lines()
     made = []
     # RU/EN sources are read before writing any output so the two languages stay consistent.
@@ -233,7 +271,7 @@ def main():
         doc = documents[lang]
         change_core(doc, lang)
         add_wordbattle(doc, lang)
-        output = DEST[lang]
+        output = outputs[lang]
         output.parent.mkdir(parents=True, exist_ok=True)
         doc.save(output)
         made.append(output)
